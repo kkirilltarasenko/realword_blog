@@ -1,0 +1,26 @@
+$successColor: #52c41a;
+$hoverColor: #ffaa18;
+
+.authorize-button {
+  width: 109px;
+  height: 51px;
+
+  font-size: 18px;
+  background-color: inherit;
+  border: 1px solid #ffffff;
+
+  cursor: pointer;
+
+  transition: all .3s ease;
+
+  &:hover {
+    border-color: $hoverColor;
+    color: $hoverColor;
+    transform: scale(1.1);
+  }
+}
+
+.authorize-button--success {
+  border-color: $successColor;
+  color: $successColor;
+}

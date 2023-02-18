@@ -1,0 +1,15 @@
+.articles {
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+  height: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .articles__pagination {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+}
