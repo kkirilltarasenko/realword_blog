@@ -9,6 +9,8 @@ import { type RootState } from '../redux/reducers/rootReducer';
 /* Pages */
 import Articles from '../Articles/Articles';
 import ArticlePage from '../Articles/ArticlePage/ArticlePage';
+import Registration from '../Authorization/Registration/Registration';
+import Login from '../Authorization/Login/Login';
 /* Components */
 import Header from '../Header/Header';
 
@@ -31,6 +33,8 @@ function App(): JSX.Element {
         <Route path="/" element={<Articles />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/articles/:slug" element={<ArticlePage />} />
+        <Route path="/sign-up" element={<Registration />} />
+        <Route path="/sign-in" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,45 @@
+$labelColor: #262626;
+$inputColor: #D9D9D9;
+$errorColor: #F5222D;
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  height: 40px;
+  margin: 0 auto;
+
+  .form-input__label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: $labelColor;
+    margin-bottom: 2px;
+  }
+
+  .form-input__input {
+    padding: 8px 0 8px 12px;
+    border: 1px solid $inputColor;
+    border-radius: 4px;
+
+    &::placeholder {
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      color: $inputColor;
+    }
+  }
+
+  .form-input__input--error {
+    border-color: $errorColor;
+  }
+
+  .form-input__error-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: $errorColor;
+    margin-top: 3px;
+  }
+
+  .hidden {
+    display: none;
+  }
+}

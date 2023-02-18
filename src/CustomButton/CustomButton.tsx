@@ -1,13 +1,15 @@
 import React, { type FC } from 'react';
+import { Link } from 'react-router-dom';
 /* Styles */
 import './CustomButton.scss';
 
 interface CustomButtonProps {
   value: string;
   style?: string;
+  path?: string;
 }
 
-const CustomButton: FC<CustomButtonProps> = ({ value, style }): JSX.Element => {
+const CustomButton: FC<CustomButtonProps> = ({ value, style, path }): JSX.Element => {
   const classNames = ['authorize-button'];
 
   switch (style) {
@@ -18,7 +20,15 @@ const CustomButton: FC<CustomButtonProps> = ({ value, style }): JSX.Element => {
       break;
   }
 
-  return <button className={classNames.join(' ')}>{value}</button>;
+  return path !== undefined ? (
+    <button className={classNames.join(' ')}>
+      <Link className="authorize-button__link" to={path}>
+        {value}
+      </Link>
+    </button>
+  ) : (
+    <button className={classNames.join(' ')}>{value}</button>
+  );
 };
 
 export default CustomButton;

@@ -10,8 +10,8 @@ const Header: FC = (): JSX.Element => {
       <div className="header__container">
         <h1 className="header__title">Realworld Blog</h1>
         <div className="header__buttons">
-          <CustomButton key={0} value={'Sign in'} />
-          <CustomButton key={1} value={'Sign up'} style={'success'} />
+          <CustomButton key={0} value={'Sign in'} path={'/sign-in'} />
+          <CustomButton key={1} value={'Sign up'} style={'success'} path={'/sign-up'} />
         </div>
       </div>
     </header>

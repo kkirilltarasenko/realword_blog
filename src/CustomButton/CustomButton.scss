@@ -1,5 +1,5 @@
 $successColor: #52c41a;
-$hoverColor: #ffaa18;
+$hoverColor: #1890FF;
 
 .authorize-button {
   width: 109px;
@@ -18,9 +18,18 @@ $hoverColor: #ffaa18;
     color: $hoverColor;
     transform: scale(1.1);
   }
+  
+  .authorize-button__link {
+    text-decoration: none;
+    color: black;
+  }
 }
 
 .authorize-button--success {
   border-color: $successColor;
   color: $successColor;
+
+  .authorize-button__link {
+    color: inherit;
+  }
 }

@@ -1,0 +1,43 @@
+$agreeColor: #595959;
+$linkColor: #8C8C8C;
+$linkRedirectColor: #1890FF;
+$lineColor: #E8E8E8;
+
+.form__title {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.form__agree {
+  width: 320px;
+  display: flex;
+  align-items: flex-start;
+  margin: 0 auto;
+  .form__agree--text {
+    margin-left: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: $agreeColor;
+  }
+}
+
+.form__line {
+  width: 320px;
+  height: 2px;
+  background-color: $lineColor;
+  margin: 0 auto;
+}
+
+.form__link {
+  display: flex;
+  justify-content: center;
+  color: $linkColor;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  .form__link--redirect {
+    color: $linkRedirectColor;
+    text-decoration: none;
+  }
+}
