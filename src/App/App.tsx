@@ -11,6 +11,7 @@ import Articles from '../Articles/Articles';
 import ArticlePage from '../Articles/ArticlePage/ArticlePage';
 import Registration from '../Authorization/Registration/Registration';
 import Login from '../Authorization/Login/Login';
+import Profile from '../Authorization/Profile/Profile';
 /* Components */
 import Header from '../Header/Header';
 
@@ -35,6 +36,7 @@ function App(): JSX.Element {
         <Route path="/articles/:slug" element={<ArticlePage />} />
         <Route path="/sign-up" element={<Registration />} />
         <Route path="/sign-in" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

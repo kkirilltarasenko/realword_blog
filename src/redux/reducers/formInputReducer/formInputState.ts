@@ -37,4 +37,22 @@ export const defaultState: FormInputType[] = [
     error: 'Passwords must match',
     errorCheck: false,
   },
+  {
+    id: 5,
+    label: 'New password',
+    placeholder: 'New password',
+    value: '',
+    type: 'text',
+    error: '',
+    errorCheck: false,
+  },
+  {
+    id: 6,
+    label: 'Avatar image (url)',
+    placeholder: 'Avatar image (url)',
+    value: '',
+    type: 'text',
+    error: '',
+    errorCheck: false,
+  },
 ];

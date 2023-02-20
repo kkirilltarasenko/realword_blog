@@ -6,6 +6,7 @@ import { type RootState } from '../../redux/reducers/rootReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsAuth } from '../../redux/reducers/isAuthReducer/isAuthReducer';
 import { setLoginError } from '../../redux/reducers/loginErrorReducer/loginErrorReducer';
+import { setActiveUser } from '../../redux/reducers/activeUserReducer/activeUserActions';
 /* Components */
 import FormInput from '../FormInput/FormInput';
 import FormSubmitButton from '../FormSubmitButton/FormSubmitButton';
@@ -53,6 +54,10 @@ const Login: FC = (): JSX.Element => {
         return;
       }
 
+      window.localStorage.setItem('user', JSON.stringify(result));
+      window.localStorage.setItem('isAuth', JSON.stringify(true));
+
+      dispatch(setActiveUser(result));
       dispatch(setLoginError(false));
       dispatch(setIsAuth(true));
     }

@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { type AppDispatch } from '../../redux/store';
 import { type RootState } from '../../redux/reducers/rootReducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { type FormInputType } from '../../redux/reducers/formInputReducer/formInputTypes';
 import {
   setInputError,
   clearInputError,
@@ -86,9 +85,10 @@ const Registration: FC = (): JSX.Element => {
       }}
     >
       <h1 className="form__title">Create new account</h1>
-      {inputs.map((el: FormInputType) => {
-        return <FormInput key={el.id} element={el} />;
-      })}
+      <FormInput key={1} element={inputs[0]} />
+      <FormInput key={2} element={inputs[1]} />
+      <FormInput key={3} element={inputs[2]} />
+      <FormInput key={4} element={inputs[3]} />
       <div className="form__line"></div>
       <div className="form__agree">
         <Checkbox />

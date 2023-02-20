@@ -16,6 +16,12 @@ const CustomButton: FC<CustomButtonProps> = ({ value, style, path }): JSX.Elemen
     case 'success':
       classNames.push('authorize-button--success');
       break;
+    case 'dark':
+      classNames.push('authorize-button--dark');
+      break;
+    case 'create-article':
+      classNames.push('authorize-button--create-article');
+      break;
     default:
       break;
   }

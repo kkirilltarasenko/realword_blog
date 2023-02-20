@@ -1,0 +1,29 @@
+.profile__form {
+  width: 384px;
+  height: 444px;
+  background-color: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin: 59px auto;
+  padding: 48px 0 20px;
+
+  .form__error {
+    width: 320px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+
+    color: #F5222D;
+    border: 1px solid #F5222D;
+    border-radius: 4px;
+  }
+
+  .hidden {
+    display: none;
+  }
+}

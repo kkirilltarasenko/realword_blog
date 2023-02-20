@@ -17,6 +17,8 @@
 
     .header__title {
       opacity: .85;
+      text-decoration: none;
+      color: #000000;
     }
 
     .header__buttons {
@@ -25,6 +27,25 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    .header__profile {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 440px;
+      .header__profile--username {
+        color: #000000;
+        opacity: .85;
+        font-size: 18px;
+        text-decoration: none;
+      }
+
+      .header__profile--avatar {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+      }
     }
   }
 }

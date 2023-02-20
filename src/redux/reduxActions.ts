@@ -6,3 +6,5 @@ export const SET_INPUT_ERROR = 'SET_INPUT_ERROR';
 export const CLEAR_INPUT_ERROR = 'CLEAR_INPUT_ERROR';
 export const SET_IS_AUTH = 'SET_IS_AUTH';
 export const SET_LOGIN_ERROR = 'SET_LOGIN_ERROR';
+export const SET_ACTIVE_USER = 'SET_ACTIVE_USER';
+export const CLEAR_ACTIVE_USER = 'CLEAR_ACTIVE_USER';

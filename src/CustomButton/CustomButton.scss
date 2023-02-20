@@ -1,5 +1,6 @@
 $successColor: #52c41a;
 $hoverColor: #1890FF;
+$darkColor: #082443;
 
 .authorize-button {
   width: 109px;
@@ -8,6 +9,7 @@ $hoverColor: #1890FF;
   font-size: 18px;
   background-color: inherit;
   border: 1px solid #ffffff;
+  border-radius: 5px;
 
   cursor: pointer;
 
@@ -28,6 +30,26 @@ $hoverColor: #1890FF;
 .authorize-button--success {
   border-color: $successColor;
   color: $successColor;
+
+  .authorize-button__link {
+    color: inherit;
+  }
+}
+
+.authorize-button--dark {
+  border-color: $darkColor;
+  color: $darkColor;
+
+  .authorize-button__link {
+    color: inherit;
+  }
+}
+
+.authorize-button--create-article {
+  border-color: $successColor;
+  color: $successColor;
+  height: 31px;
+  font-size: 14px;
 
   .authorize-button__link {
     color: inherit;
