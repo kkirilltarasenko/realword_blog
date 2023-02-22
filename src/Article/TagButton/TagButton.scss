@@ -1,0 +1,45 @@
+$background: #FFFFFF;
+$delete: #F5222D;
+$create: #1890FF;
+
+.tag-button {
+  width: 120px;
+  height: 34px;
+  margin: 4px 0 0 17px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 4px;
+  background-color: $background;
+
+  font-size: 16px;
+
+  cursor: pointer;
+  transition: all .3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.tag-button--delete {
+  border: 1px solid $delete;
+  color: $delete;
+
+  &:hover {
+    background-color: $delete;
+    color: $background;
+  }
+}
+
+.tag-button--create {
+  border: 1px solid $create;
+  color: $create;
+
+  &:hover {
+    background-color: $create;
+    color: $background;
+  }
+}

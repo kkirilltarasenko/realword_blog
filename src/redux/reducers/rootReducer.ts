@@ -8,6 +8,9 @@ import { formInputReducer } from './formInputReducer/formInputReducer';
 import { isAuthReducer } from './isAuthReducer/isAuthReducer';
 import { loginErrorReducer } from './loginErrorReducer/loginErrorReducer';
 import { activeUserReducer } from './activeUserReducer/activeUserReducer';
+import { articleInputReducer } from './articleInputReducer/articleInputReducer';
+import { tagsReducer } from './tagsReducer/tagsReducer';
+import { articleReducer } from './articleReducer/articleReducer';
 
 export const rootReducer = combineReducers({
   articles: articlesSlice.reducer,
@@ -18,6 +21,9 @@ export const rootReducer = combineReducers({
   isAuth: isAuthReducer,
   isLoginError: loginErrorReducer,
   activeUser: activeUserReducer,
+  articleInputs: articleInputReducer,
+  tags: tagsReducer,
+  article: articleReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

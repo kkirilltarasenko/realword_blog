@@ -32,6 +32,10 @@ $titleColor: #1890FF;
         display: flex;
         align-items: center;
 
+        .article__like {
+          color: #F5222D;
+        }
+
         .articles_favorite {
           font-size: 12px;
           opacity: .75;

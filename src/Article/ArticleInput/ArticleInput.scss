@@ -1,0 +1,33 @@
+$labelColor: #262626;
+$inputColor: #BFBFBF;
+
+.article-input--box {
+  display: flex;
+  flex-direction: column;
+
+  .article-input--label {
+    font-size: 14px;
+    color: $labelColor;
+    margin-bottom: 5px;
+  }
+
+  .article-input {
+    width: 100%;
+    padding: 8px 0 8px 12px;
+    border: 1px solid $inputColor;
+    border-radius: 4px;
+
+    &::placeholder {
+      color: $inputColor;
+      font-size: 16px;
+    }
+  }
+
+  .article-input--field {
+    padding-bottom: 136px;
+  }
+
+  .article-input--tag {
+    width: 300px;
+  }
+}

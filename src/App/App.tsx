@@ -12,12 +12,15 @@ import ArticlePage from '../Articles/ArticlePage/ArticlePage';
 import Registration from '../Authorization/Registration/Registration';
 import Login from '../Authorization/Login/Login';
 import Profile from '../Authorization/Profile/Profile';
+import CreateArticle from '../Article/CreateArticle/CreateArticle';
+import EditArticle from '../Article/EditArticle/EditArticle';
 /* Components */
 import Header from '../Header/Header';
 
 function App(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const offset = useSelector((state: RootState) => state.offset.offset);
+  const isAuth = useSelector((state: RootState) => state.isAuth.isAuth);
 
   useEffect(() => {
     async function fetchApi(): Promise<void> {
@@ -37,6 +40,8 @@ function App(): JSX.Element {
         <Route path="/sign-up" element={<Registration />} />
         <Route path="/sign-in" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/new-article" element={isAuth ? <CreateArticle /> : <Login />} />
+        <Route path="/articles/:slug/edit" element={<EditArticle />} />
       </Routes>
     </BrowserRouter>
   );

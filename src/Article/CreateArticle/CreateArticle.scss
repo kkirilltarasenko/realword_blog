@@ -1,0 +1,58 @@
+$backgroundColor: #FFFFFF;
+
+.article-form {
+  width: 938px;
+  height: 701px;
+
+  margin: 36px auto;
+  padding: 48px 32px;
+  background-color: $backgroundColor;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.article-textarea--title {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.article-textarea {
+  width: 100%;
+  height: 168px;
+  border-radius: 4px;
+  border-color: #BFBFBF;
+  padding: 7px 12px;
+
+  &::placeholder {
+    color: #BFBFBF;
+    font-size: 16px;
+  }
+}
+
+.article-create--button {
+  width: 300px;
+}
+
+.article-create--tags {
+  font-size: 14px;
+  width: 570px;
+
+  .article-create--tags-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    .article-create--tags-box {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+
+      .article-create--tag-box {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

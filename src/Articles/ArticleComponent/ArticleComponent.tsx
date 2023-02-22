@@ -2,10 +2,12 @@ import React, { type FC } from 'react';
 /* React Router */
 import { Link } from 'react-router-dom';
 /* Redux */
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { type AppDispatch } from '../../redux/store';
 import { type Article } from '../../redux/reducers/articlesReducer/articlesTypes';
+import { type RootState } from '../../redux/reducers/rootReducer';
 import { setSlug } from '../../redux/reducers/slugReducer/slugReducer';
+import { setArticle } from '../../redux/reducers/articleReducer/articleReducer';
 /* Components */
 import { HeartOutlined } from '@ant-design/icons';
 /* Style */
@@ -18,10 +20,39 @@ interface ArticleProps {
 }
 
 const ArticleComponent: FC<ArticleProps> = ({ article }): JSX.Element => {
+  console.log(article);
   const dispatch = useDispatch<AppDispatch>();
+  const activeUser = useSelector((state: RootState) => state.activeUser.user);
 
   const onLinkClick = (slug: string): void => {
     dispatch(setSlug(slug));
+    dispatch(setArticle(article));
+  };
+
+  const like = (): void => {
+    async function setLike(): Promise<void> {
+      if (!article.favorited) {
+        const response = await fetch(
+          `https://blog.kata.academy/api/articles/${article.slug}/favorite`,
+          {
+            method: 'POST',
+            headers: {
+              Authorization: `Token ${activeUser.token}`,
+            },
+          }
+        );
+        article = await response.json();
+      } else {
+        await fetch(`https://blog.kata.academy/api/articles/${article.slug}/favorite`, {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Token ${activeUser.token}`,
+          },
+        });
+      }
+    }
+
+    void setLike();
   };
 
   const date = format(new Date(article.createdAt), 'MMMM d, uuu');
@@ -40,7 +71,12 @@ const ArticleComponent: FC<ArticleProps> = ({ article }): JSX.Element => {
             {article.title}
           </Link>
           <div className="article__favorite--box">
-            <HeartOutlined />
+            <HeartOutlined
+              className={article.favorited ? 'article__like' : ''}
+              onClick={() => {
+                like();
+              }}
+            />
             <h2 className="articles_favorite">{article.favoritesCount}</h2>
           </div>
         </div>

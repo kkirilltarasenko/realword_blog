@@ -43,13 +43,7 @@ const Header: FC = (): JSX.Element => {
         </Link>
         {isAuth === 'true' ? (
           <div className="header__profile">
-            <div
-              onClick={() => {
-                console.log(1);
-              }}
-            >
-              <CustomButton value={'Create article'} style={'create-article'} />
-            </div>
+            <CustomButton value={'Create article'} style={'create-article'} path="/new-article" />
             <Link to="/profile" className="header__profile--username">
               {activeUser.user.username}
             </Link>

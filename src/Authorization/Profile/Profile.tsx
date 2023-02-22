@@ -1,4 +1,5 @@
 import React, { type FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 /* Redux */
 import { type AppDispatch } from '../../redux/store';
 import { type RootState } from '../../redux/reducers/rootReducer';
@@ -13,6 +14,7 @@ import '../Authorization.scss';
 import { setActiveUser } from '../../redux/reducers/activeUserReducer/activeUserActions';
 
 const Profile: FC = (): JSX.Element => {
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const activeUser = useSelector((state: RootState) => state.activeUser.user);
   const inputs = useSelector((state: RootState) => state.inputs);
@@ -57,8 +59,19 @@ const Profile: FC = (): JSX.Element => {
       );
 
       window.localStorage.clear();
-      window.localStorage.setItem('user', JSON.stringify(activeUser));
+      window.localStorage.setItem(
+        'user',
+        JSON.stringify({
+          user: {
+            email: email.value,
+            token: activeUser.token,
+            username: username.value,
+            image: img.value,
+          },
+        })
+      );
       window.localStorage.setItem('isAuth', JSON.stringify(true));
+      navigate('/');
     }
 
     void edit();
