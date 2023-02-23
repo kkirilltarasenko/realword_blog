@@ -14,7 +14,7 @@ import './Articles.scss';
 
 const Articles: FC = (): JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
-  const articles = useSelector((state: RootState) => state.articles.articles);
+  const syncArticles = useSelector((state: RootState) => state.syncArticles.articles);
   const current = useSelector((state: RootState) => state.current.current);
 
   const changePage = (page: number): void => {
@@ -22,9 +22,9 @@ const Articles: FC = (): JSX.Element => {
     dispatch(setOffset((page - 1) * 5));
   };
 
-  return articles.length !== 0 ? (
+  return syncArticles.length !== 0 ? (
     <div className="articles">
-      {articles.map((article: Article) => {
+      {syncArticles.map((article: Article) => {
         return <ArticleComponent key={Math.random()} article={article} />;
       })}
       <div className="articles__pagination">

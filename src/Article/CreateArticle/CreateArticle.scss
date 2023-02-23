@@ -56,3 +56,11 @@ $backgroundColor: #FFFFFF;
     }
   }
 }
+
+.article__create--error {
+  color: #F5222D;
+  border: 1px solid #F5222D;
+  padding: 10px 0;
+  text-align: center;
+  border-radius: 4px;
+}

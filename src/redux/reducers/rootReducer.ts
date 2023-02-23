@@ -11,6 +11,7 @@ import { activeUserReducer } from './activeUserReducer/activeUserReducer';
 import { articleInputReducer } from './articleInputReducer/articleInputReducer';
 import { tagsReducer } from './tagsReducer/tagsReducer';
 import { articleReducer } from './articleReducer/articleReducer';
+import { syncArticlesReducer } from './syncArticlesReducer/syncArticleReducer';
 
 export const rootReducer = combineReducers({
   articles: articlesSlice.reducer,
@@ -24,6 +25,7 @@ export const rootReducer = combineReducers({
   articleInputs: articleInputReducer,
   tags: tagsReducer,
   article: articleReducer,
+  syncArticles: syncArticlesReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

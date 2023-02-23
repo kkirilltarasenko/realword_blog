@@ -8,6 +8,7 @@ import { type Article } from '../../redux/reducers/articlesReducer/articlesTypes
 import { type RootState } from '../../redux/reducers/rootReducer';
 import { setSlug } from '../../redux/reducers/slugReducer/slugReducer';
 import { setArticle } from '../../redux/reducers/articleReducer/articleReducer';
+import { setLike } from '../../redux/reducers/syncArticlesReducer/syncArticleReducer';
 /* Components */
 import { HeartOutlined } from '@ant-design/icons';
 /* Style */
@@ -20,7 +21,6 @@ interface ArticleProps {
 }
 
 const ArticleComponent: FC<ArticleProps> = ({ article }): JSX.Element => {
-  console.log(article);
   const dispatch = useDispatch<AppDispatch>();
   const activeUser = useSelector((state: RootState) => state.activeUser.user);
 
@@ -30,7 +30,7 @@ const ArticleComponent: FC<ArticleProps> = ({ article }): JSX.Element => {
   };
 
   const like = (): void => {
-    async function setLike(): Promise<void> {
+    async function clickLike(): Promise<void> {
       if (!article.favorited) {
         const response = await fetch(
           `https://blog.kata.academy/api/articles/${article.slug}/favorite`,
@@ -41,18 +41,27 @@ const ArticleComponent: FC<ArticleProps> = ({ article }): JSX.Element => {
             },
           }
         );
-        article = await response.json();
-      } else {
-        await fetch(`https://blog.kata.academy/api/articles/${article.slug}/favorite`, {
-          method: 'DELETE',
-          headers: {
-            Authorization: `Token ${activeUser.token}`,
-          },
-        });
+        const favorite = await response.json();
+        dispatch(setLike([[], favorite.article]));
+      }
+
+      if (article.favorited) {
+        const response = await fetch(
+          `https://blog.kata.academy/api/articles/${article.slug}/favorite`,
+          {
+            method: 'DELETE',
+            headers: {
+              Authorization: `Token ${activeUser.token}`,
+            },
+          }
+        );
+
+        const favorite = await response.json();
+        dispatch(setLike([[], favorite.article]));
       }
     }
 
-    void setLike();
+    void clickLike();
   };
 
   const date = format(new Date(article.createdAt), 'MMMM d, uuu');

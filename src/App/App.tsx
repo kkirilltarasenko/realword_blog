@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { type AppDispatch } from '../redux/store';
 import { fetchArticles } from '../redux/reducers/articlesReducer/articlesReducer';
 import { type RootState } from '../redux/reducers/rootReducer';
+import { setArticles } from '../redux/reducers/syncArticlesReducer/syncArticleReducer';
 /* Pages */
 import Articles from '../Articles/Articles';
 import ArticlePage from '../Articles/ArticlePage/ArticlePage';
@@ -20,11 +21,12 @@ import Header from '../Header/Header';
 function App(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const offset = useSelector((state: RootState) => state.offset.offset);
-  const isAuth = useSelector((state: RootState) => state.isAuth.isAuth);
+  const isAuth = window.localStorage.getItem('isAuth');
 
   useEffect(() => {
     async function fetchApi(): Promise<void> {
-      await dispatch(fetchArticles(offset));
+      const articles = await dispatch(fetchArticles(offset));
+      dispatch(setArticles([articles.payload.articles, articles.payload.articles[0]]));
     }
 
     void fetchApi();
@@ -40,7 +42,7 @@ function App(): JSX.Element {
         <Route path="/sign-up" element={<Registration />} />
         <Route path="/sign-in" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/new-article" element={isAuth ? <CreateArticle /> : <Login />} />
+        <Route path="/new-article" element={isAuth === 'true' ? <CreateArticle /> : <Login />} />
         <Route path="/articles/:slug/edit" element={<EditArticle />} />
       </Routes>
     </BrowserRouter>

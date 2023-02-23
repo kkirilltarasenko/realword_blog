@@ -8,6 +8,7 @@ import { type TagType } from '../../redux/reducers/tagsReducer/tagsReducer';
 import { addTag, deleteTag } from '../../redux/reducers/tagsReducer/tagsReducer';
 import { type ArticleInputTypes } from '../../redux/reducers/articleInputReducer/articleInputTypes';
 import { setArticleInput } from '../../redux/reducers/articleInputReducer/articleInputActions';
+import { setLoginError } from '../../redux/reducers/loginErrorReducer/loginErrorReducer';
 /* Components */
 import ArticleInput from '../ArticleInput/ArticleInput';
 import FormSubmitButton from '../../Authorization/FormSubmitButton/FormSubmitButton';
@@ -22,6 +23,7 @@ const CreateArticle: FC = (): JSX.Element => {
   const activeUser = useSelector((state: RootState) => state.activeUser.user);
   const inputs = useSelector((state: RootState) => state.articleInputs);
   const tags = useSelector((state: RootState) => state.tags);
+  const isLoginError: boolean = useSelector((state: RootState) => state.isLoginError.isLoginError);
 
   const add = (): void => {
     const newTag = {
@@ -43,6 +45,7 @@ const CreateArticle: FC = (): JSX.Element => {
   const submitForm = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (inputs[0].value === '' || inputs[1].value === '' || inputs[2].value === '') {
+      dispatch(setLoginError(true));
       return;
     }
 
@@ -65,6 +68,7 @@ const CreateArticle: FC = (): JSX.Element => {
         }),
       });
 
+      dispatch(setLoginError(false));
       navigate('/');
     }
 
@@ -118,6 +122,9 @@ const CreateArticle: FC = (): JSX.Element => {
             Add tag
           </TagButton>
         </div>
+      </div>
+      <div className={isLoginError ? 'article__create--error' : 'hidden'}>
+        <pre>All fields are required.</pre>
       </div>
       <div className="article-create--button">
         <FormSubmitButton>Send</FormSubmitButton>
