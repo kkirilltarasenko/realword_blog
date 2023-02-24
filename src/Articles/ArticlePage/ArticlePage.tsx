@@ -14,14 +14,14 @@ import './ArticlePage.scss';
 /* Components */
 import ArticleComponent from '../ArticleComponent/ArticleComponent';
 import ArticleButton from './ArticleButton/ArticleButton';
-import { Popconfirm } from 'antd';
+import { Empty, Popconfirm } from 'antd';
 
 const ArticlePage: FC = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const activeUser = useSelector((state: RootState) => state.activeUser.user);
   const slug: string = useSelector((state: RootState) => state.slug.slug);
-  const articles = useSelector((state: RootState) => state.articles.articles);
+  const articles = useSelector((state: RootState) => state.syncArticles.articles);
   const article: Article | null = useArticle(slug, articles);
   const inputs = useSelector((state: RootState) => state.articleInputs);
 
@@ -81,7 +81,9 @@ const ArticlePage: FC = (): JSX.Element => {
       </div>
     </div>
   ) : (
-    <h1>Error: 404</h1>
+    <div className="empty">
+      <Empty />
+    </div>
   );
 };
 

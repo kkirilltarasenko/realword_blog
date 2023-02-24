@@ -10,3 +10,14 @@
     padding: 20px;
   }
 }
+
+.empty {
+  width: 500px;
+  height: 500px;
+
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
