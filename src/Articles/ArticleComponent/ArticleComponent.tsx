@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
 /* React Router */
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 /* Redux */
 import { useDispatch, useSelector } from 'react-redux';
 import { type AppDispatch } from '../../redux/store';
@@ -21,6 +21,7 @@ interface ArticleProps {
 }
 
 const ArticleComponent: FC<ArticleProps> = ({ article }): JSX.Element => {
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const activeUser = useSelector((state: RootState) => state.activeUser.user);
 
@@ -30,6 +31,11 @@ const ArticleComponent: FC<ArticleProps> = ({ article }): JSX.Element => {
   };
 
   const like = (): void => {
+    if (activeUser === undefined) {
+      navigate('/sign-in');
+      return;
+    }
+
     async function clickLike(): Promise<void> {
       if (!article.favorited) {
         const response = await fetch(
