@@ -9,6 +9,8 @@ import {
   clearInputError,
 } from '../../redux/reducers/formInputReducer/formInputActions';
 import { setIsAuth } from '../../redux/reducers/isAuthReducer/isAuthReducer';
+import { setCheckbox } from '../../redux/reducers/checkboxReducer/checkboxReducer';
+import { setLoginError } from '../../redux/reducers/loginErrorReducer/loginErrorReducer';
 /* Components */
 import FormInput from '../FormInput/FormInput';
 import FormSubmitButton from '../FormSubmitButton/FormSubmitButton';
@@ -22,6 +24,8 @@ const Registration: FC = (): JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
   const inputs = useSelector((state: RootState) => state.inputs);
   const isAuth = useSelector((state: RootState) => state.isAuth.isAuth);
+  const checked = useSelector((state: RootState) => state.checked.checked);
+  const isLoginError: boolean = useSelector((state: RootState) => state.isLoginError.isLoginError);
 
   useEffect(() => {
     if (isAuth) {
@@ -43,6 +47,11 @@ const Registration: FC = (): JSX.Element => {
 
       if (repeatPassword.value !== password.value) {
         dispatch(setInputError([repeatPassword, '']));
+        return;
+      }
+
+      if (!checked) {
+        dispatch(setLoginError(true));
         return;
       }
 
@@ -71,6 +80,7 @@ const Registration: FC = (): JSX.Element => {
         return;
       }
 
+      dispatch(setLoginError(false));
       dispatch(setIsAuth(true));
     }
 
@@ -91,12 +101,15 @@ const Registration: FC = (): JSX.Element => {
       <FormInput key={4} element={inputs[3]} />
       <div className="form__line"></div>
       <div className="form__agree">
-        <Checkbox />
+        <Checkbox checked={checked} onClick={() => dispatch(setCheckbox())} />
         <p className="form__agree--text">
           I agree to the processing of my
           <br />
           personal information
         </p>
+      </div>
+      <div className={isLoginError ? 'form__checkbox--error' : 'hidden'}>
+        Error: checkbox isn`t active.
       </div>
       <FormSubmitButton>Create</FormSubmitButton>
       <div className="form__link">

@@ -56,26 +56,30 @@ const ArticlePage: FC = (): JSX.Element => {
   return article !== null ? (
     <div className="article__page">
       <ArticleComponent article={article} />
-      <div
-        className={
-          article.author.username === activeUser.username ? 'article__edit-buttons' : 'hidden'
-        }
-      >
-        <Popconfirm
-          title={'Are you sure to delete this article?'}
-          okText={'Yes'}
-          cancelText={'No'}
-          placement={'right'}
-          onConfirm={() => {
-            deleteFunc();
-          }}
+      {activeUser !== undefined ? (
+        <div
+          className={
+            article.author.username === activeUser.username ? 'article__edit-buttons' : 'hidden'
+          }
         >
-          <button className="tag-button tag-button--delete">Delete</button>
-        </Popconfirm>
-        <ArticleButton style={'edit'} path={`/articles/${article.slug}/edit`} func={editFunc}>
-          Edit
-        </ArticleButton>
-      </div>
+          <Popconfirm
+            title={'Are you sure to delete this article?'}
+            okText={'Yes'}
+            cancelText={'No'}
+            placement={'right'}
+            onConfirm={() => {
+              deleteFunc();
+            }}
+          >
+            <button className="tag-button tag-button--delete">Delete</button>
+          </Popconfirm>
+          <ArticleButton style={'edit'} path={`/articles/${article.slug}/edit`} func={editFunc}>
+            Edit
+          </ArticleButton>
+        </div>
+      ) : (
+        <div className="hidden"></div>
+      )}
       <div className="article__body">
         <ReactMarkdown>{article.body}</ReactMarkdown>
       </div>

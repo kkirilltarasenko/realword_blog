@@ -17,3 +17,4 @@ export const DELETE_TAG = 'DELETE_TAG';
 export const SET_ARTICLE = 'SET_ARTICLE';
 export const SET_LIKE = 'SET_LIKE';
 export const SET_ARTICLES = 'SET_ARTICLES';
+export const SET_CHECKBOX = 'SET_CHECKBOX';

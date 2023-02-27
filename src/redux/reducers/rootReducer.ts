@@ -12,6 +12,7 @@ import { articleInputReducer } from './articleInputReducer/articleInputReducer';
 import { tagsReducer } from './tagsReducer/tagsReducer';
 import { articleReducer } from './articleReducer/articleReducer';
 import { syncArticlesReducer } from './syncArticlesReducer/syncArticleReducer';
+import { checkboxReducer } from './checkboxReducer/checkboxReducer';
 
 export const rootReducer = combineReducers({
   articles: articlesSlice.reducer,
@@ -26,6 +27,7 @@ export const rootReducer = combineReducers({
   tags: tagsReducer,
   article: articleReducer,
   syncArticles: syncArticlesReducer,
+  checked: checkboxReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
