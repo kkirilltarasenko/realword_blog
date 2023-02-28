@@ -27,6 +27,10 @@ const CreateArticle: FC = (): JSX.Element => {
   const tags = useSelector((state: RootState) => state.tags);
   const isLoginError: boolean = useSelector((state: RootState) => state.isLoginError.isLoginError);
 
+  if (activeUser === undefined) {
+    navigate('/sign-in');
+  }
+
   const add = (): void => {
     const newTag = {
       id: Math.random(),

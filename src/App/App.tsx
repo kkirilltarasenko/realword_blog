@@ -22,7 +22,6 @@ import Header from '../Header/Header';
 function App(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const offset = useSelector((state: RootState) => state.offset.offset);
-  const isAuth = window.localStorage.getItem('isAuth');
 
   useEffect(() => {
     async function fetchApi(): Promise<void> {
@@ -66,7 +65,7 @@ function App(): JSX.Element {
         <Route path="/sign-up" element={<Registration />} />
         <Route path="/sign-in" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/new-article" element={isAuth === 'true' ? <CreateArticle /> : <Login />} />
+        <Route path="/new-article" element={<CreateArticle />} />
         <Route path="/articles/:slug/edit" element={<EditArticle />} />
       </Routes>
     </BrowserRouter>
