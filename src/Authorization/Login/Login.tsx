@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setIsAuth } from '../../redux/reducers/isAuthReducer/isAuthReducer';
 import { setLoginError } from '../../redux/reducers/loginErrorReducer/loginErrorReducer';
 import { setActiveUser } from '../../redux/reducers/activeUserReducer/activeUserActions';
+import { clearInputError } from '../../redux/reducers/formInputReducer/formInputActions';
 /* Components */
 import FormInput from '../FormInput/FormInput';
 import FormSubmitButton from '../FormSubmitButton/FormSubmitButton';
@@ -65,6 +66,11 @@ const Login: FC = (): JSX.Element => {
     void login();
   };
 
+  const onLinkClick = (): void => {
+    dispatch(clearInputError());
+    dispatch(setLoginError(false));
+  };
+
   return (
     <form
       className="login__form"
@@ -81,7 +87,13 @@ const Login: FC = (): JSX.Element => {
       <FormSubmitButton>Login</FormSubmitButton>
       <div className="form__link">
         Don`t have an account?
-        <Link to="/sign-up" className="form__link--redirect">
+        <Link
+          to="/sign-up"
+          onClick={() => {
+            onLinkClick();
+          }}
+          className="form__link--redirect"
+        >
           <pre> Sign Up.</pre>
         </Link>
       </div>

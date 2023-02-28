@@ -3,8 +3,10 @@ import { type Article } from './articlesTypes';
 
 export const fetchArticles = createAsyncThunk(
   'articles/fetchArticles',
-  async function (offset: number) {
-    const response = await fetch(`https://blog.kata.academy/api/articles?limit=5&offset=${offset}`);
+  async function ([offset, limit]: number[]) {
+    const response = await fetch(
+      `https://blog.kata.academy/api/articles?limit=${limit}&offset=${offset}`
+    );
     return await response.json();
   }
 );

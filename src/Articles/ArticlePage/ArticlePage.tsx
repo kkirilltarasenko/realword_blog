@@ -9,6 +9,8 @@ import { type RootState } from '../../redux/reducers/rootReducer';
 import { type Article } from '../../redux/reducers/articlesReducer/articlesTypes';
 import { setTags, clearTags, type TagType } from '../../redux/reducers/tagsReducer/tagsReducer';
 import { setArticleInput } from '../../redux/reducers/articleInputReducer/articleInputActions';
+import { fetchArticles } from '../../redux/reducers/articlesReducer/articlesReducer';
+import { setArticles } from '../../redux/reducers/syncArticlesReducer/syncArticleReducer';
 /* Style */
 import './ArticlePage.scss';
 /* Components */
@@ -40,14 +42,17 @@ const ArticlePage: FC = (): JSX.Element => {
     }
   };
 
-  const deleteFunc = (): void => {
+  const deleteFunc = async (): Promise<void> => {
     if (article !== null) {
-      void fetch(`https://blog.kata.academy/api/articles/${article.slug}`, {
+      await fetch(`https://blog.kata.academy/api/articles/${article.slug}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Token ${activeUser.token}`,
         },
       });
+
+      const articles = await dispatch(fetchArticles([0, 5]));
+      dispatch(setArticles([articles.payload.articles, articles.payload.articles[0]]));
     }
 
     navigate('/');
@@ -68,7 +73,7 @@ const ArticlePage: FC = (): JSX.Element => {
             cancelText={'No'}
             placement={'right'}
             onConfirm={() => {
-              deleteFunc();
+              void deleteFunc();
             }}
           >
             <button className="tag-button tag-button--delete">Delete</button>

@@ -10,6 +10,8 @@ import {
   clearActiveUser,
 } from '../redux/reducers/activeUserReducer/activeUserActions';
 import { setIsAuth } from '../redux/reducers/isAuthReducer/isAuthReducer';
+import { clearInputError } from '../redux/reducers/formInputReducer/formInputActions';
+import { setLoginError } from '../redux/reducers/loginErrorReducer/loginErrorReducer';
 /* Components */
 import CustomButton from '../CustomButton/CustomButton';
 /* Style */
@@ -33,6 +35,11 @@ const Header: FC = (): JSX.Element => {
     dispatch(clearActiveUser());
     dispatch(setIsAuth(false));
     navigate('/sign-in');
+  };
+
+  const onLinkClick = (): void => {
+    dispatch(clearInputError());
+    dispatch(setLoginError(false));
   };
 
   return (
@@ -67,7 +74,12 @@ const Header: FC = (): JSX.Element => {
             </div>
           </div>
         ) : (
-          <div className="header__buttons">
+          <div
+            className="header__buttons"
+            onClick={() => {
+              onLinkClick();
+            }}
+          >
             <CustomButton key={0} value={'Sign in'} path={'/sign-in'} />
             <CustomButton key={1} value={'Sign up'} style={'success'} path={'/sign-up'} />
           </div>

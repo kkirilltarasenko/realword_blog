@@ -87,6 +87,11 @@ const Registration: FC = (): JSX.Element => {
     void register();
   };
 
+  const onLinkClick = (): void => {
+    dispatch(clearInputError());
+    dispatch(setLoginError(false));
+  };
+
   return (
     <form
       className="registration__form"
@@ -101,7 +106,9 @@ const Registration: FC = (): JSX.Element => {
       <FormInput key={4} element={inputs[3]} />
       <div className="form__line"></div>
       <div className="form__agree">
-        <Checkbox checked={checked} onClick={() => dispatch(setCheckbox())} />
+        <div className={isLoginError ? 'checkbox--error' : ''}>
+          <Checkbox checked={checked} onClick={() => dispatch(setCheckbox())} />
+        </div>
         <p className="form__agree--text">
           I agree to the processing of my
           <br />
@@ -114,7 +121,13 @@ const Registration: FC = (): JSX.Element => {
       <FormSubmitButton>Create</FormSubmitButton>
       <div className="form__link">
         Already have an account?
-        <Link to="/sign-in" className="form__link--redirect">
+        <Link
+          to="/sign-in"
+          onClick={() => {
+            onLinkClick();
+          }}
+          className="form__link--redirect"
+        >
           <pre> Sign In.</pre>
         </Link>
       </div>

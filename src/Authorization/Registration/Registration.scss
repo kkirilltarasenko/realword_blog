@@ -10,6 +10,17 @@
   margin: 59px auto;
   padding: 48px 0 20px;
 
+  .form__agree {
+    .checkbox--error {
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      border: 2px solid #F5222D;
+      border-radius: 4px;
+    }
+  }
   .form__checkbox--error {
     width: 320px;
     height: 30px;

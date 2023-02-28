@@ -5,13 +5,13 @@ import { type AppDispatch } from '../../redux/store';
 import { type RootState } from '../../redux/reducers/rootReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoginError } from '../../redux/reducers/loginErrorReducer/loginErrorReducer';
+import { setActiveUser } from '../../redux/reducers/activeUserReducer/activeUserActions';
 /* Components */
 import FormInput from '../FormInput/FormInput';
 import FormSubmitButton from '../FormSubmitButton/FormSubmitButton';
 /* Style */
 import './Profile.scss';
 import '../Authorization.scss';
-import { setActiveUser } from '../../redux/reducers/activeUserReducer/activeUserActions';
 
 const Profile: FC = (): JSX.Element => {
   const navigate = useNavigate();

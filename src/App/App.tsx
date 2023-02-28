@@ -7,6 +7,7 @@ import { type AppDispatch } from '../redux/store';
 import { fetchArticles } from '../redux/reducers/articlesReducer/articlesReducer';
 import { type RootState } from '../redux/reducers/rootReducer';
 import { setArticles } from '../redux/reducers/syncArticlesReducer/syncArticleReducer';
+import { type Article } from '../redux/reducers/articlesReducer/articlesTypes';
 /* Pages */
 import Articles from '../Articles/Articles';
 import ArticlePage from '../Articles/ArticlePage/ArticlePage';
@@ -25,7 +26,30 @@ function App(): JSX.Element {
 
   useEffect(() => {
     async function fetchApi(): Promise<void> {
-      const articles = await dispatch(fetchArticles(offset));
+      const articles = await dispatch(fetchArticles([offset, 5]));
+      let whitespaceArticle = 0;
+      for (let i = 0; i < articles.payload.articles.length; i++) {
+        if (articles.payload.articles[i].title === '') {
+          whitespaceArticle++;
+        }
+      }
+      if (whitespaceArticle !== 0) {
+        const _articles = await dispatch(
+          fetchArticles([offset + whitespaceArticle + 1, whitespaceArticle])
+        );
+        dispatch(
+          setArticles([
+            [
+              ...articles.payload.articles.filter((el: Article) => {
+                return el.title !== '';
+              }),
+              ..._articles.payload.articles,
+            ],
+            articles.payload.articles[0],
+          ])
+        );
+        return;
+      }
       dispatch(setArticles([articles.payload.articles, articles.payload.articles[0]]));
     }
 

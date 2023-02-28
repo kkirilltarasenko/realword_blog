@@ -9,6 +9,8 @@ import { addTag, deleteTag } from '../../redux/reducers/tagsReducer/tagsReducer'
 import { type ArticleInputTypes } from '../../redux/reducers/articleInputReducer/articleInputTypes';
 import { setArticleInput } from '../../redux/reducers/articleInputReducer/articleInputActions';
 import { setLoginError } from '../../redux/reducers/loginErrorReducer/loginErrorReducer';
+import { fetchArticles } from '../../redux/reducers/articlesReducer/articlesReducer';
+import { setArticles } from '../../redux/reducers/syncArticlesReducer/syncArticleReducer';
 /* Components */
 import ArticleInput from '../ArticleInput/ArticleInput';
 import FormSubmitButton from '../../Authorization/FormSubmitButton/FormSubmitButton';
@@ -68,6 +70,8 @@ const CreateArticle: FC = (): JSX.Element => {
         }),
       });
 
+      const articles = await dispatch(fetchArticles([0, 5]));
+      dispatch(setArticles([articles.payload.articles, articles.payload.articles[0]]));
       dispatch(setLoginError(false));
       navigate('/');
     }

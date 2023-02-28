@@ -33,7 +33,8 @@ const Articles: FC = (): JSX.Element => {
             changePage(page);
           }}
           current={current}
-          total={250}
+          total={50}
+          pageSize={1}
         />
       </div>
     </div>
