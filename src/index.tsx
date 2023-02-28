@@ -1,4 +1,4 @@
-import 'react-app-polyfill/stable';
+import 'idempotent-babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
